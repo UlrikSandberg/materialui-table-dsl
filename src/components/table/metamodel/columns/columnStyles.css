@@ -1,0 +1,7 @@
+.column-clickable {
+    cursor:pointer
+}
+
+.column-clickable:hover {
+    text-decoration: underline;
+}

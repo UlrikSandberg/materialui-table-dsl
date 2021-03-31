@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Docker run option
+First option is to use the accomodating docker file
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Build image:
+```
+docker build . -t tabledsl:1.0
+```
 
-## Available Scripts
+Run image:
+```
+docker run -d -p 23230:80 tabledsl:1.0
+```
 
-In the project directory, you can run:
+# Manual run option
+1. Install node on system
+2. run the .sh file which will install the required node modules and start the react app
 
-### `npm start`
+# IMPORTANT!!!
+IF running manually make sure that the node_modules folder exists by running npm install in the folder containing package.json file. ALSO if it doesn't work my script might miss out on react installations for this reason try in a different folder outside the project and run "npx create-react-app test" to see if all the necessary tools are installed to scafold a react application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Structure
+main application is inside the src folder, more specifically everything start from index.tsx which mounts App.tsx
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+App.tsx is inside the component folder and showcases an example of the implemented dsl
 
-### `npm test`
+The dsl is contained inside the table folder which consists of two folders namely builders and the metamodel.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The metamodel consists of the following hierachy:
 
-### `npm run build`
+The MetaTable owns MetaRows and HeaderColumns, the MetaRow owns regular columns, and there exists a heirachy of columns.
+As the domain happend to fall on react and they advice to do component as what is known as functional components the different
+components actually looks like functions, however they work as a first-class citizen and is equally valid as a class just ligther.
+Likewise, instead of having a heritage heirachy of an abstract basecolumn class which is extended through regular class heritage, the 
+functional components exhibits heritage by rendering them selves as children inside more abstract components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Disclaimer
+1. I'm no UX designer and for that reason to make it feel nicer i have made extensive use of the material-ui react library for nice ui components and styling.
+2. The overall design and inspiration for many of the ideas such as dropdown, searching etc are also inspired from material-ui examples of tables, (however only as an inspiration for functionality no code)
+3. Likewise the sorting algorithm was lended as time was short and i really wanted a working proof of concept
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
